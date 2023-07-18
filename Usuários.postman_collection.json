@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "cf2d80f0-a4ed-4b16-8ce4-31a497cf178b",
+		"name": "Usuários",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28545803",
+		"_collection_link": "https://www.postman.com/speeding-meadow-459235/workspace/atividade/collection/28545803-cf2d80f0-a4ed-4b16-8ce4-31a497cf178b?action=share&creator=28545803&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Cenários Fail",
+			"item": [
+				{
+					"name": "Email utilizado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Tester23432\",\r\n  \"email\": \"atividawadaaaeqa24333@gmail.com\",\r\n  \"password\": \"teste342231\",\r\n  \"administrador\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{Local}}usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "Usuário excluído",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Usuário não encontrado error\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Usuário não encontrado\");\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{Local}}usuarios/0uxuPY0cbmQhpEz1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Listar usuários cadastrados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{Local}}usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro de usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code é 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Verificando mensagem de sucesso\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Tester32\",\r\n  \"email\": \"atividawadaaaeqa24333@gmail.com\",\r\n  \"password\": \"teste321\",\r\n  \"administrador\": \"false\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{Local}}usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar usuário por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verificando nome do usuário\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Atividade\");\r",
+							"pm.test(\"Status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{Local}}usuarios/R7ySjmmUbmz4SSnj"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletando usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{Local}}usuarios/f0EWjyXCnNA9R5s7"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code  200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Mensagem de sucesso na edição\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\r\n            \"nome\": \"Tester3432\",\r\n            \"email\": \"atividawadaaaeq34a24333@gmail.com\",\r\n            \"password\": \"teste321\",\r\n            \"administrador\": \"false\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{Local}}usuarios/myxDA5Xka4I9guo5"
+			},
+			"response": []
+		}
+	]
+}
